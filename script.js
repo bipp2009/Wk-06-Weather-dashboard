@@ -20,15 +20,15 @@ $("#search-weather").on("click", function () {
     console.log("humidity", data.main.humidity)
     //wind spped
     console.log("wind speed", data.wind.speed)
-  })
-  var futureWeatherURl = "https://api.openweathermap.org/data/2.5/onecall?q=" + latitude + longitude "&appid=" + API key"
+    var futureWeatherURl = "https://api.openweathermap.org/data/2.5/onecall?q=" + data.coord.lat + data.coord.lon "&appid=" + API key"
   fetch(futureWeatherURl).then(function(result) {
     return result.json();
-  }
-  }).then(function(data{
+  }).then(function(data){
     console.log(data)
-console.log("UVIndex"),
+, console.log("UVIndex"),
   })
+  })
+  
 });
 
 //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={9089f70eaa43a7727a45c93e56a716e}
