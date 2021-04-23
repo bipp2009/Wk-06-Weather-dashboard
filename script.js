@@ -27,13 +27,35 @@ function getForecast(lat, lon) {
 
 //Two functions to display the current weather and the future forecast on the screen
 function showCurrent(data) {
-  console.log("cityname:", data.name);
-  //temp
-  console.log("temperature", data.main.temp);
-  //humidity
+ //Create element for city name
+  var cityNameEl = document.createElement("h3")
+  cityNameEl.textContent = data.name; 
+//Create element for city temp
+  var cityTempEl = document.createElement("p");
+  cityTempEl.textContent = "Temp: " + data.main.temp;
+
+  //Create element for city humidity
   console.log("humidity", data.main.humidity);
-  //wind spped
+  var cityHumidityEl = document.createElement("p");
+  cityHumidityEl.textContent = "Humidity: " + data.main.humidity;
+  //Create element for city wind speed
   console.log("wind speed", data.wind.speed);
+  var cityWindspeedEl = document.createElement("p");
+  cityWindspeedEl.textContent = "Wind Speed: " + data.wind.speed;
+
+  var currentWeatherArea = document.getElementById("current");
+  currentWeatherArea.innerHTML = "";
+
+  currentWeatherArea.appendChild(cityNameEl)
+  currentWeatherArea.appendChild(cityTempEl)
+  currentWeatherArea.appendChild(cityHumidityEl)
+  currentWeatherArea.appendChild(cityWindspeedEl)
+
+
+
+
+
+
 
   getForecast(data.coord.lat, data.coord.lon);
 }
