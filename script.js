@@ -14,7 +14,8 @@ function getWeather(city) {
 }
 
 function getForecast(lat, lon) {
-  var futureWeatherURl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metricfuture `;
+  var futureWeatherURl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${APIKey}`;
+  // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
   weatherData = fetch(futureWeatherURl)
     .then(function (result) {
       return result.json();
@@ -49,18 +50,39 @@ function showCurrent(data) {
   currentWeatherArea.appendChild(cityNameEl)
   currentWeatherArea.appendChild(cityTempEl)
   currentWeatherArea.appendChild(cityHumidityEl)
-  currentWeatherArea.appendChild(cityWindspeedEl)
-
-
-
-
-
-
-
+  currentWeatherArea.appendChild(cityWindspeedEl);
   getForecast(data.coord.lat, data.coord.lon);
 }
 function showForecast(data) {
-  console.log("showForecast", data);
+
+var uv = data.current.uvi; 
+var currentWeatherArea = document.getElementById("current");
+var uvEl = document.createElement('p');
+uvEl.textContent = "UV Index: " + uv; 
+currentWeatherArea.appendChild(uvEl);
+
+ var futureWeatherArea = document.getElementById("future");
+
+futureWeatherArea.innerHTML = " ";
+
+ var futureDailyWeather = data.daily;
+ console.log(data)
+ for(var i = 0; i < 5; i++){
+   var card = document.createElement("div");
+   card.setAttribute("class", "col-2");
+
+   var tempEl = document.createElement("p");
+  tempEl.textContent = "Temp: "+futureDailyWeather[i].temp.day;
+  var humidityEl = document.createElement("p");
+  humidityEl.textContent = "Humidity: "+futureDailyWeather[i].humidity;
+
+card.appendChild(tempEl)
+card.appendChild(humidityEl)
+
+
+futureWeatherArea.appendChild(card)
+
+ }
 }
 
 //Function to run the application search and everything else
