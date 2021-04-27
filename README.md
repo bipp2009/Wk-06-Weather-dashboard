@@ -6,7 +6,9 @@ This weather dashboard accesses 2 third party weather APIS and by entering city 
 
 ## Deployment
 
+The application is deployed at the live URL: 
 
+https://bipp2009.github.io/Wk-06-Weather-dashboard/
 
 ## Screenshot
 
