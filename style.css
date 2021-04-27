@@ -1,0 +1,14 @@
+html {
+  color: red;
+}
+
+.history > li {
+  list-style-type: none;
+  color: black;
+  border: 2px solid black;
+}
+
+.today-forecast {
+  height: 300px;
+}
+
